@@ -1,6 +1,6 @@
 # Project One
 Seanny and Mert's Project One for GA SEI-09
-  
+
 ### Scope
 * Create and modify Users
 * Create and modify Books
@@ -10,22 +10,19 @@ Seanny and Mert's Project One for GA SEI-09
 
 ### User Stories
 
- 1. Authorized user <br/>
- 
-* User can make an account.<br/>
-* User can view one book.<br/>
-* User can rate book.<br/>
-* User can show rating lists.<br/>
-* User can filter lists by genre.<br/>
+1. **Authorized User**
+  * User can make an account.
+  * User can view one book.
+  * User can rate book.
+  * User can show rating lists.
+  * User can filter lists by genre.
 
- 2. Non-Authorized user <br/>
-* User can see the rating list from others user ratings<br/>
-* User can see the news about books<br/>
- 
- 
-  
+2. **Non-Authorized User**
+  * User can see the rating list from others user ratings
+  * User can see the news about books
+
 ### Wireframes
-  
+
 ### Data Models and ERD
 1. User
   * Email
