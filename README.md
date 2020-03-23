@@ -9,11 +9,19 @@ Seanny and Mert's Project One for GA SEI-09
 
 
 ### User Stories
-User can make an account.<br/>
-User can view one book.<br/>
-User can rate book.<br/>
-User can show rating lists.<br/>
-User can filter lists by genre.<br/>
+ 1. Aut
+ 
+ User can make an account.<br/>
+ User can view one book.<br/>
+ User can rate book.<br/>
+ User can show rating lists.<br/>
+ User can filter lists by genre.<br/>
+
+ 2.Non-Aut
+ User can see the rating list from others user ratings<br/>
+ User can see the news about books<br/>
+ 
+ 
   
 ### Wireframes
   
