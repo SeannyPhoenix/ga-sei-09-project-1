@@ -2,25 +2,24 @@
 Seanny and Mert's Project One for GA SEI-09
 
 ### Scope
-* Create and modify Users
-* Create and modify Books
-* Rate books
-* Show rate lists
+Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre. 
+
+JavaScript
 
 
 ### User Stories
 
 1. **Authorized User**
   * User can make an account.
-  * User can view one book.
   * User can rate book.
-  * User can show rating lists.
-  * User can filter lists by genre.
+  * User can create personal lists.
   * User can add a book.
 
 2. **Non-Authorized User**
   * User can see the rating list from others user ratings
-  * User can see the news about books
+  * User can filter lists by genre.
+  * User can view details about specific books.
+  * Stretch: User can see top-rated books for a particular week/month.
 
 ### Wireframes
 
@@ -41,4 +40,5 @@ Seanny and Mert's Project One for GA SEI-09
   * Rate
   * User
   * Book
+  * Timestamp
 ### Feasability Check
