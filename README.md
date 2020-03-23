@@ -2,7 +2,7 @@
 Seanny and Mert's Project One for GA SEI-09
 
 ### Scope
-Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre. 
+Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre.
 
 JavaScript
 
@@ -22,7 +22,11 @@ JavaScript
   * Stretch: User can see top-rated books for a particular week/month.
 
 ### Wireframes
-
+**Mobile Device**<br/>
+<img src="docs/images/Wireframes1.jpg" alt="Kitten" height="200" /><br/>
+<img src="docs/images/Wireframes2.jpg" alt="Kitten" height="200" /><br/>
+**Larger Browsers**<br/>
+<img src="docs/images/Wireframes3.jpg" alt="Kitten" height="200" /><br/>
 ### Data Models and ERD
 1. User
   * Email
