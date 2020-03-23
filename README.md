@@ -9,7 +9,8 @@ Seanny and Mert's Project One for GA SEI-09
 
 
 ### User Stories
- 1. Aut
+
+ 1. Aut.<br/>
  
  User can make an account.<br/>
  User can view one book.<br/>
