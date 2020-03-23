@@ -16,6 +16,7 @@ Seanny and Mert's Project One for GA SEI-09
   * User can rate book.
   * User can show rating lists.
   * User can filter lists by genre.
+  * User can add a book.
 
 2. **Non-Authorized User**
   * User can see the rating list from others user ratings
@@ -36,4 +37,8 @@ Seanny and Mert's Project One for GA SEI-09
   * ISBN
   * Genre
   * Ratings = Array
+ 3. Rating
+  * Rate
+  * User
+  * Book
 ### Feasability Check
