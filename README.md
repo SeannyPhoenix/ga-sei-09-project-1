@@ -18,7 +18,7 @@ Seanny and Mert's Project One for GA SEI-09
 * User can show rating lists.<br/>
 * User can filter lists by genre.<br/>
 
- 2.Non-Authorized user <br/>
+ 2. Non-Authorized user <br/>
 * User can see the rating list from others user ratings<br/>
 * User can see the news about books<br/>
  
