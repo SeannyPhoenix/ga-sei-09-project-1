@@ -2,10 +2,10 @@
 Seanny and Mert's Project One for GA SEI-09
 
 ### Scope
-Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre.
+Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre. A stretch goal would be to
 
-JavaScript
-
+External APIs<br/>
+[Google Books](https://developers.google.com/books)</br>
 
 ### User Stories
 
@@ -27,6 +27,7 @@ JavaScript
 <img src="docs/images/Wireframes2.jpg" alt="Kitten" height="200" /><br/>
 **Larger Browsers**<br/>
 <img src="docs/images/Wireframes3.jpg" alt="Kitten" height="200" /><br/>
+
 ### Data Models and ERD
 1. User
   * Email
@@ -45,4 +46,5 @@ JavaScript
   * User
   * Book
   * Timestamp
-### Feasability Check
+
+### Feasibility Check
