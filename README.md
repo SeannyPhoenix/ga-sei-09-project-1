@@ -23,10 +23,10 @@ External APIs<br/>
 
 ### Wireframes
 **Mobile Device**<br/>
-<img src="docs/images/Wireframes1.jpg" alt="Kitten" height="200" /><br/>
-<img src="docs/images/Wireframes2.jpg" alt="Kitten" height="200" /><br/>
+<img src="docs/images/Wireframes1.jpg" height="200" /><br/>
+<img src="docs/images/Wireframes2.jpg" height="200" /><br/>
 **Larger Browsers**<br/>
-<img src="docs/images/Wireframes3.jpg" alt="Kitten" height="200" /><br/>
+<img src="docs/images/Wireframes3.jpg" height="200" /><br/>
 
 ### Data Models and ERD
 1. User
@@ -48,3 +48,24 @@ External APIs<br/>
   * Timestamp
 
 ### Feasibility Check
+
+### Sprint Plan
+#### Monday
+  * Create Planning Doc
+
+#### Tuesday
+  * Get Approval
+  * Begin Model/Schema design
+  * Begin Front-end design
+  * Set up API endpoints
+
+#### Wednesday
+
+#### Thursday
+
+#### Friday
+
+#### Weekend
+
+#### Monday
+  * Present project tgether
