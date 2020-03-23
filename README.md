@@ -4,8 +4,14 @@ Seanny and Mert's Project One for GA SEI-09
 ### Scope
 Our site will allow users to rate books. These ratings will be aggragated and turned into a list of highest-rated books. They can also view lists of books by genre. A stretch goal would be to
 
-External APIs<br/>
-[Google Books](https://developers.google.com/books)</br>
+#### External APIs
+* [Google Books](https://developers.google.com/books)
+
+#### Modules
+* [Passport](http://www.passportjs.org/)
+* [Express.js](https://expressjs.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [body-parser](https://www.npmjs.com/package/body-parser)
 
 ### User Stories
 
@@ -43,6 +49,7 @@ External APIs<br/>
   * Ratings = Array
  3. Rating
   * Rate
+  * Comments
   * User
   * Book
   * Timestamp
@@ -68,4 +75,4 @@ External APIs<br/>
 #### Weekend
 
 #### Monday
-  * Present project tgether
+  * Present project together
