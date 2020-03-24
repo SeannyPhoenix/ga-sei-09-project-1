@@ -73,7 +73,8 @@ Our site will allow users to rate books. These ratings will be aggragated and tu
 #### Wednesday
 
 #### Thursday
-
+  * Learn authentication
+  * Begin implementing authentication
 #### Friday
 
 #### Weekend
