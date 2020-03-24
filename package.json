@@ -2,7 +2,7 @@
   "name": "ga-sei-09-project-1",
   "version": "1.0.0",
   "description": "Seanny and Mert's Project One for GA SEI-09",
-  "main": "seed.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },

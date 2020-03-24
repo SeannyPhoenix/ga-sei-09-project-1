@@ -9,7 +9,11 @@ const PORT = process.env.PORT || 3000;
 
 // ---------------------------------------- DATABASE ---------------------------------------- //
 
-// const db = require('./models');
+const db = require('./models');
+
+// ----------------------------------------- ROUTES ----------------------------------------- //
+
+const routes = require('./routes');
 
 // --------------------------------------- MIDDLEWARE --------------------------------------- //
 
@@ -20,17 +24,17 @@ app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json())
 
 
-//Home View 
+//Home View
 
-app.get('/', (req, res) => {
-    res.sendFile("/views/index.html", {
-      root: __dirname,
-    });
+app.get('/', (req, res) =>
+{
+  res.sendFile("/views/index.html",
+  {
+    root: __dirname,
   });
+});
 
-
-
-
+app.use('/api/v1/', routes.api);
 
 
 // -------------------------------------- START SERVER -------------------------------------- //
