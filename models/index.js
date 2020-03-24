@@ -1,4 +1,4 @@
-const mongoopse = require('mongoopse');
+const mongoose = require('mongoose');
 const User = require('./User.js');
 const Book = require('./Book.js');
 const Rating = require('./Rating.js');
