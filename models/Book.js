@@ -14,7 +14,7 @@ const BookSchema = new Schema(
     required: true
   },
   image: String,
-  isbn: String,
+  // isbn: String,
   genre: String,
   ratings: []
 });

@@ -4,6 +4,8 @@ const regex = {
   tail: `(<\ /a> \([0-9]*,[0-9]*\)<\ /li>)`,
 }
 
+// Book List from https://www.librarything.com/z_books.php
+// Retrieved 202-03-24
 module.exports = [
 {
   title: `Harry Potter and the Sorcerer's Stone (Book 1)`,
