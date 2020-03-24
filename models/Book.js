@@ -13,6 +13,7 @@ const BookSchema = new Schema(
     type: String,
     required: true
   },
+  image: String,
   isbn: String,
   genre: String,
   ratings: []
@@ -20,4 +21,4 @@ const BookSchema = new Schema(
 
 const Book = mongoose.model('Book', BookSchema);
 
-module.export = Book;
+module.exports = Book;

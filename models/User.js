@@ -10,10 +10,10 @@ const UserSchema = new Schema(
     required: true
   },
   screenName: String,
-  ratings: [Rating.schema]
+  // ratings: [Rating.schema]
   // Stretch: Create Lists
 });
 
 const User = mongoose.model('User', UserSchema);
 
-module.export = User;
+module.exports = User;
