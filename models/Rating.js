@@ -13,11 +13,11 @@ const RatingSchema = new Schema(
     required: true
   },
   review: String,
-  user: User.schema,
-  book: Book.schema,
+  // user: User.schema,
+  // book: Book.schema,
   timestamp:
   {
-    typs: Date,
+    type: Date,
     required: true,
     default: new Date()
   }
@@ -25,4 +25,4 @@ const RatingSchema = new Schema(
 
 const Rating = mongoose.model('Rating', RatingSchema);
 
-module.export = Rating;
+module.exports = Rating;
