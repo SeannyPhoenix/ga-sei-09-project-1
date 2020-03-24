@@ -6,9 +6,7 @@ module.exports = {
   {
     email: 'mert.nacakgedigi@gmail.com'
   }],
-  books: [
-
-  ],
+  books: require('./top1000Books.js'),
   ratings: [
 
   ]
