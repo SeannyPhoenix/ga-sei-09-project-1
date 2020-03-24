@@ -17,9 +17,13 @@ Our site will allow users to rate books. These ratings will be aggragated and tu
 
 1. **Authorized User**
   * User can make an account.
-  * User can rate book.
-  * User can create personal lists.
-  * User can add a book.
+  * User can rate book.  (Create)
+  * User can view ratings list. (Read)
+  * User can view one rating. (Read)
+  * User can add comments to rating. (Update)
+  * User can remove rating. (Delete)
+  * Stretch: User can create personal lists.
+  * Stretch: User can add a book.
 
 2. **Non-Authorized User**
   * User can see the rating list from others user ratings
@@ -40,7 +44,7 @@ Our site will allow users to rate books. These ratings will be aggragated and tu
   * Password
   * Screen Name
   * Rated Books = Array - Referenced
-  * Read Later
+  * Stretch: Create Lists
 2. Book
   * Title
   * Author
