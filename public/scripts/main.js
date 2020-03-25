@@ -9,10 +9,10 @@ $.ajax({
 
 
 function createElement(element) {
-    let title = element.title
-    let author = element.author
-    let id = element._id
-    let rating = element.ratings
+    let title = element.title;
+    let author = element.author;
+    let id = element._id;
+    let ratingId = element.ratings;
 
     let d1 = document.getElementById('lister');
     d1.insertAdjacentHTML('beforeend', 
