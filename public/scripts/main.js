@@ -14,20 +14,29 @@ function createElement(element) {
     let id = element._id;
 
     let bookLine;
+    // Check if there is any rating
     if (element.ratings.length){
-      let ratingEl = element.ratings[0].rating;
+         
+      let sum = 0;
+
+      //Getting Average of each rating 
+      for (let i=0; i<element.ratings.length; i++) {
+        sum += element.ratings[i].rating
+      }
+      var avg = sum/element.ratings.length
+      
+      //Element is going to be inserted 
       bookLine = ` 
       <div class="col col-lg-8">
         ${title} (${author})
       </div>
     
       <div class="col col-lg-2">
-         <i class="fas fa-star">${ratingEl}</i>
+         <i class="fas fa-star">${avg}</i>
       </div>
       <div class="col col-lg-2">
         <i class="fas fa-star"></i>
       </div>
-   
     `
     } else {
         bookLine = ` 
@@ -41,7 +50,6 @@ function createElement(element) {
         <div class="col col-lg-2">
           <i class="fas fa-star"></i>
         </div>
-     
       `
     }
 
@@ -49,8 +57,6 @@ function createElement(element) {
 
         d1.insertAdjacentHTML('beforeend', bookLine);
    
-
-
 }
 
 function onSuccess(json) {
