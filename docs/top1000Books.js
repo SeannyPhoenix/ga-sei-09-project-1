@@ -9,7 +9,7 @@ const regex = {
 module.exports = [
 {
   title: `Harry Potter and the Sorcerer's Stone (Book 1)`,
-  author: `J. K. Rowling`
+  author: `J. K. Rowling`,
 },
 {
   title: `Harry Potter and the Chamber of Secrets`,
