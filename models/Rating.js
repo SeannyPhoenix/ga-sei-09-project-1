@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./User.js');
-const Book = require('./Book.js');
+const ObjectId = mongoose.Types.ObjectId;
+
 
 const RatingSchema = new Schema(
 {
@@ -13,8 +13,16 @@ const RatingSchema = new Schema(
     required: true
   },
   review: String,
-  // user: User.schema,
-  // book: Book.schema,
+  user:
+  {
+    type: ObjectId,
+    ref: 'User'
+  },
+  book:
+  {
+    type: ObjectId,
+    ref: 'Book'
+  },
   timestamp:
   {
     type: Date,

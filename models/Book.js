@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 const BookSchema = new Schema(
 {
@@ -16,7 +17,11 @@ const BookSchema = new Schema(
   image: String,
   // isbn: String,
   genre: String,
-  ratings: []
+  ratings: [
+  {
+    type: ObjectId,
+    ref: 'Rating'
+  }]
 });
 
 const Book = mongoose.model('Book', BookSchema);
