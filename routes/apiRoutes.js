@@ -8,35 +8,41 @@ const API_VERSION = 'v1';
 
 // GET Book Index
 // /api/v1/books
-router.get('/books', (req, res) =>
+router.get('/books', getBooks);
+async function getBooks(req, res)
 {
-  db.Book.find(
-  {}, (err, books) =>
+  try
   {
-    if (err)
-    {
-      console.log(`Book Index Error`, err);
-      res.sendStatus(500);
-      return;
-    }
+    let books = await db.Book.find(
+    {}).populate('ratings');
     res.json(books);
-  });
-});
+  }
+
+  catch (err)
+  {
+    console.log(`Book Index Error`, err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
 
 // GET Book Show
-router.get('/books/:id', (req, res) =>
+router.get('/books/:id', showBook)
+async function showBook(req, res)
 {
-  db.Book.findById(req.params.id, (err, book) =>
+  try
   {
-    if (err)
-    {
-      console.log(`Book Show Error`, err);
-      res.sendStatus(500);
-      return;
-    }
+    let book = await db.Book.findById(req.params.id).populate('ratings');
     res.json(book);
-  });
-});
+  }
+  catch (err)
+  {
+    console.log(`Book Show Error`, err);
+    res.sendStatus(500);
+    return;
+  }
+}
 
 
 // GET User Index
