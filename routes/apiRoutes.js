@@ -56,7 +56,7 @@ router.get('/users', (req, res) =>
 });
 
 // GET User Show
-router.get('/user/:id', (req, res) =>
+router.get('/users/:id', (req, res) =>
 {
   db.User.findById(req.params.id, (err, user) =>
   {
@@ -71,7 +71,7 @@ router.get('/user/:id', (req, res) =>
 });
 
 // POST User Create
-router.post('/user', (req, res) =>
+router.post('/users', (req, res) =>
 {
   db.User.create(req.body, (err, newUser) =>
   {
@@ -86,25 +86,27 @@ router.post('/user', (req, res) =>
 });
 
 // PUT User Update
-router.put('/user/:id', (req, res) =>
+router.put('/users/:id', (req, res) =>
 {
-  db.User.findByIdAndUpdate(req.params.id, req.body,
-  {
-    new: true
-  }, (err, updatedUser) =>
-  {
-    if (err)
+  db.User.findByIdAndUpdate(
+    req.params.id,
+    req.body,
     {
-      console.log(`Update User Error`, err);
-      res.sendStatus(500);
-      return;
-    }
-    res.json(updatedUser);
-  });
+      new: true
+    }, (err, updatedUser) =>
+    {
+      if (err)
+      {
+        console.log(`Update User Error`, err);
+        res.sendStatus(500);
+        return;
+      }
+      res.json(updatedUser);
+    });
 });
 
-// GET Raiting Index by User
-router.get('/user/:id/ratings', (req, res) =>
+// GET Rating Index by User
+router.get('/users/:id/ratings', (req, res) =>
 {
   db.User.findById(req.params.id, (err, foundUser) =>
   {
@@ -118,7 +120,7 @@ router.get('/user/:id/ratings', (req, res) =>
   });
 });
 
-// GET Raiting Index by User
+// GET Rating Index by User
 router.get('/books/:id/ratings', (req, res) =>
 {
   db.Book.findById(req.params.id, (err, foundBook) =>
@@ -133,19 +135,54 @@ router.get('/books/:id/ratings', (req, res) =>
   });
 });
 
-// POST Rating Create
-router.post('/rating', newRating);
+// GET Rating Index
+router.get('/ratings', (req, res) =>
+{
+  db.Rating.find(
+  {}, (err, ratings) =>
+  {
+    if (err)
+    {
+      console.log(`Index Rating Error`, err);
+      res.sendStatus(500);
+      return;
+    }
+    res.json(ratings);
+  })
+})
 
+// GET Rating Show
+router.get('/ratings/:id', (req, res) =>
+{
+  db.Rating.findById(req.params.id, (err, rating) =>
+  {
+    if (err)
+    {
+      console.log(`Show Rating Error`, err);
+      res.sendStatus(500);
+      return;
+    }
+    res.json(rating);
+  })
+})
+
+// POST Rating Create
+router.post('/ratings', newRating);
 async function newRating(req, res)
 {
   try
   {
-    let newRating = db.Rating.create(req.body);
+    let newRating = await db.Rating.create(req.body);
+
+    let user = await db.User.findById(newRating.user);
+    user.ratings.push(newRating._id);
+    await user.save();
+
+    let book = await db.Book.findById(newRating.book);
+    book.ratings.push(newRating._id);
+    await book.save();
+
     res.json(newRating);
-    // let user = await db.User.findById(newRating.user);
-    // user.ratings.push(newRating._id);
-    // await user.save();
-    // res.json(newRating);
   }
   catch (err)
   {
@@ -155,9 +192,63 @@ async function newRating(req, res)
   }
 }
 
-
 // PUT Rating Update
+router.put('/ratings/:id', updateRating);
+async function updateRating(req, res)
+{
+  try
+  {
+    let updatedRating = await db.Rating.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true
+      }
+    );
+
+    res.json(updatedRating);
+  }
+  catch (err)
+  {
+    console.log(`Update Book Ratings Error:`, err);
+    res.sendStatus(500);
+    return;
+  }
+}
 
 // DELETE Rating Destroy
+router.delete('/ratings/:id', deleteRating);
+async function deleteRating(req, res)
+{
+  try
+  {
+    let deletedRating =
+      await db.Rating.findByIdAndDelete(req.params.id);
+    console.log(deletedRating);
+
+    let user = await db.User.findById(deletedRating.user);
+    user.ratings = user.ratings.filter(id =>
+      String(id) !== String(deletedRating._id)
+    );
+    await user.save();
+
+    let book = await db.Book.findById(deletedRating.book);
+    book.ratings = book.ratings.filter(id =>
+      String(id) !== String(deletedRating._id)
+    );
+    await book.save();
+
+    res.json(deletedRating);
+  }
+  catch (err)
+  {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
+
+
+
+
 
 module.exports = router;
