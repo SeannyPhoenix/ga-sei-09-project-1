@@ -24,32 +24,38 @@ function createElement(element) {
         sum += element.ratings[i].rating
       }
       var avg = sum/element.ratings.length
+      // Get two digits
+      avg = avg.toFixed(1)
       
       //Element is going to be inserted 
-      bookLine = ` 
-      <div class="col col-lg-8">
+      bookLine = `
+    
+      <div class="col col-lg-8" >
         ${title} (${author})
       </div>
     
       <div class="col col-lg-2">
          <i class="fas fa-star">${avg}</i>
       </div>
-      <div class="col col-lg-2">
+      <div id=${id} class="col col-lg-2">
         <i class="fas fa-star"></i>
-      </div>
+      </div> 
+    
     `
     } else {
         bookLine = ` 
-        <div class="col col-lg-8">
+   
+        <div class="col col-lg-8" >
           ${title} (${author})
         </div>
       
         <div class="col col-lg-2">
            <i class="fas fa-star"></i>
         </div>
-        <div class="col col-lg-2">
+        <div id=${id} class="col col-lg-2">
           <i class="fas fa-star"></i>
-        </div>
+        </div> 
+    
       `
     }
 
