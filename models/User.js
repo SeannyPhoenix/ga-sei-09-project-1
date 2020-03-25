@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Rating = require('./Rating.js');
+const ObjectId = mongoose.Types.ObjectId;
 
 const UserSchema = new Schema(
 {
@@ -10,7 +10,11 @@ const UserSchema = new Schema(
     required: true
   },
   screenName: String,
-  // ratings: [Rating.schema]
+  ratings: [
+  {
+    type: ObjectId,
+    ref: 'Raiting'
+  }]
   // Stretch: Create Lists
 });
 

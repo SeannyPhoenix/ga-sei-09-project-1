@@ -38,6 +38,23 @@ router.get('/books/:id', (req, res) =>
   });
 });
 
+
+// GET User Index
+router.get('/users', (req, res) =>
+{
+  db.User.find(
+  {}, (err, users) =>
+  {
+    if (err)
+    {
+      console.log(`User Index Error`, err);
+      res.sendStatus(500);
+      return;
+    }
+    res.json(users);
+  });
+});
+
 // GET User Show
 router.get('/user/:id', (req, res) =>
 {
@@ -86,11 +103,58 @@ router.put('/user/:id', (req, res) =>
   });
 });
 
-// GET Rating Index
+// GET Raiting Index by User
+router.get('/user/:id/ratings', (req, res) =>
+{
+  db.User.findById(req.params.id, (err, foundUser) =>
+  {
+    if (err)
+    {
+      console.log(`Get User Ratings Error:`, err);
+      res.sendStatus(500);
+      return;
+    }
+    res.json(foundUser.ratings);
+  });
+});
 
-// GET Rating Show
+// GET Raiting Index by User
+router.get('/books/:id/ratings', (req, res) =>
+{
+  db.Book.findById(req.params.id, (err, foundBook) =>
+  {
+    if (err)
+    {
+      console.log(`Get Book Ratings Error:`, err);
+      res.sendStatus(500);
+      return;
+    }
+    res.json(foundBook.ratings);
+  });
+});
 
 // POST Rating Create
+router.post('/rating', newRating);
+
+async function newRating(req, res)
+{
+  try
+  {
+    let newRating = db.Rating.create(req.body);
+    res.json(newRating);
+    // let user = await db.User.findById(newRating.user);
+    // user.ratings.push(newRating._id);
+    // await user.save();
+    // res.json(newRating);
+  }
+  catch (err)
+  {
+    console.log(`Create Book Ratings Error:`, err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
 
 // PUT Rating Update
 
