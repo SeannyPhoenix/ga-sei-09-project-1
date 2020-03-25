@@ -17,7 +17,6 @@ async function getBooks(req, res)
     {}).populate('ratings');
     res.json(books);
   }
-
   catch (err)
   {
     console.log(`Book Index Error`, err);
@@ -25,7 +24,6 @@ async function getBooks(req, res)
     return;
   }
 }
-
 
 // GET Book Show
 router.get('/books/:id', showBook)

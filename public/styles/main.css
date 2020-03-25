@@ -1,4 +1,17 @@
-    /* Sanity Check */
 body {
-    background-color: pink;
+    background-color: #659DBD;
+}
+
+
+#chartList{
+    background-color:  #F8F8F8;
+}
+
+#rank{
+    font-size: 25px;
+}
+
+.fa-star{
+    color: rgb(226, 123, 6);
+    padding-left: 30px;
 }
