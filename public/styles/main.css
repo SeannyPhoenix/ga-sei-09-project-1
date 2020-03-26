@@ -8,10 +8,15 @@ body {
 }
 
 #rank{
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .fa-star{
     color: rgb(226, 123, 6);
     padding-left: 30px;
+}
+
+#lister {
+    display: flex;
+    flex-direction: column;
 }
