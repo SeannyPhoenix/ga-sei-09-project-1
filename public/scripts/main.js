@@ -19,50 +19,48 @@ function createElement(element) {
          
       let sum = 0;
 
-      //Getting Average of each rating 
+      //Get average of each rating 
       for (let i=0; i<element.ratings.length; i++) {
         sum += element.ratings[i].rating
       }
       var avg = sum/element.ratings.length
       // Get two digits
       avg = avg.toFixed(1)
-      
-      //Element is going to be inserted 
+     
       bookLine = `
-    
-      <div class="col col-lg-8" >
-        ${title} (${author})
-      </div>
-    
-      <div class="col col-lg-2">
-         <i class="fas fa-star">${avg}</i>
-      </div>
-      <div id=${id} class="col col-lg-2">
-        <i class="fas fa-star"></i>
-      </div> 
-    
-    `
-    } else {
-        bookLine = ` 
-   
+      <div class="row justify-content-md-center book" data-rates="${avg}" id="${id}">
         <div class="col col-lg-8" >
           ${title} (${author})
         </div>
-      
-        <div class="col col-lg-2">
-           <i class="fas fa-star"></i>
+    
+        <div class="col col-lg-2 ">
+          <i class="fas fa-star">${avg}</i>
         </div>
-        <div id=${id} class="col col-lg-2">
+        <div id="${id}" class="col col-lg-2">
           <i class="fas fa-star"></i>
         </div> 
-    
+      </div>
+    `
+    } else {
+        bookLine = ` 
+      <div class="row justify-content-md-center book"  data-rates="${avg}" id="${id}">
+          <div class="col col-lg-8" >
+            ${title} (${author})
+          </div>
+      
+          <div class="col col-lg-2 ">
+            <i class="fas fa-star"></i>
+          </div>
+          <div id=${id} class="col col-lg-2">
+            <i class="fas fa-star"></i>
+          </div> 
+      </div>      
       `
     }
 
     let d1 = document.getElementById('lister');
 
-        d1.insertAdjacentHTML('beforeend', bookLine);
-   
+    d1.insertAdjacentHTML('beforeend', bookLine);
 }
 
 function onSuccess(json) {
@@ -70,8 +68,23 @@ function onSuccess(json) {
     json.forEach(element => {
         createElement(element)
     });
+    order()
+    
 }
 
 function handleError(err) {
     console.log(err)
 }
+
+
+//Order list by books rating
+let descendingOrder = (a, b) => b.dataset.rates - a.dataset.rates
+
+const order = function() {
+  const ordered = [...document.getElementsByClassName('book')].sort(descendingOrder)
+  console.log(ordered)
+  ordered.forEach((elem, index) => {
+    elem.style.order = index
+  })
+}
+
