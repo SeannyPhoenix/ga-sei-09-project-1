@@ -55,7 +55,7 @@ function createElement(element) {
     `
     } else {
         bookLine = ` 
-      <div class="row justify-content-md-center book"  d >
+      <div class="row justify-content-md-center book" data-rates="0">
           <div class="col col-lg-7" >
             ${title} (${author})
           </div>
@@ -139,7 +139,6 @@ const buttonContainer = document.getElementById('button-group')
 const orderFunctions = {
   descendingByRating: (a, b) => b.dataset.rates - a.dataset.rates,
   ascendingByRating: (a, b) => a.dataset.rates - b.dataset.rates,
-
 }
 
 let currentOrder;
