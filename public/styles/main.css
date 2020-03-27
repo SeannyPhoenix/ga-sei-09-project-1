@@ -27,5 +27,29 @@ body {
 
 #button-group{
     text-align: right;
-
 }
+
+.ratingLength{
+    color: gray;
+}
+
+.book {
+    padding-top: 8px
+}
+
+
+.clickedOrange{
+    color:orange
+}
+.hoverOrange{
+    color:orange
+}
+
+/* .book:nth-child(odd) {
+   background-color: #F6F6F5;
+}
+
+.book:nth-child(even) {
+    background-color: white;
+ } */
+

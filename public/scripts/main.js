@@ -31,24 +31,24 @@ function createElement(element) {
      
       bookLine = `
       <div class="row justify-content-md-center book" data-rates="${avg}">
-        <div class="col col-lg-7" >
+        <div class="col col-lg-6" >
           ${title} (${author})
         </div>
     
-        <div class="col col-lg-1 ">
-          <i class="fas fa-star">${avg}</i>
+        <div class="col col-lg-2 ">
+          <i class="fas fa-star">${avg} <span class="ratingLength">(${element.ratings.length} rating)</span> </i>
         </div>
-        <div data-bookId="${id}" class="col col-lg-4 ">
-        <i class="fas fa-star selectStar" data-value="1" id="s1"></i>
-        <i class="fas fa-star selectStar" data-value="2" id="s2"></i>
-        <i class="fas fa-star selectStar" data-value="3" id="s3"></i>
-        <i class="fas fa-star selectStar" data-value="4" id="s4"></i>
-        <i class="fas fa-star selectStar" data-value="5" id="s5"></i>
-        <i class="fas fa-star selectStar" data-value="6" id="s6"></i>
-        <i class="fas fa-star selectStar" data-value="7" id="s7"></i>
-        <i class="fas fa-star selectStar" data-value="8" id="s8"></i>
-        <i class="fas fa-star selectStar" data-value="9" id="s9"></i>
-        <i class="fas fa-star selectStar" data-value="10" id="s10"></i>
+        <div data-bookId="${id}" class="col col-lg-4 rateStar">
+        <i class="fas fa-star selectStar" data-value="1" ></i>
+        <i class="fas fa-star selectStar" data-value="2" ></i>
+        <i class="fas fa-star selectStar" data-value="3" ></i>
+        <i class="fas fa-star selectStar" data-value="4" ></i>
+        <i class="fas fa-star selectStar" data-value="5" ></i>
+        <i class="fas fa-star selectStar" data-value="6" ></i>
+        <i class="fas fa-star selectStar" data-value="7" ></i>
+        <i class="fas fa-star selectStar" data-value="8" ></i>
+        <i class="fas fa-star selectStar" data-value="9" ></i>
+        <i class="fas fa-star selectStar" data-value="10"  ></i>
 
         </div> 
       </div>
@@ -63,17 +63,17 @@ function createElement(element) {
           <div class="col col-lg-1 ">
             <i class="fas fa-star"></i>
           </div>
-          <div data-bookId="${id}" class="col col-lg-4">
-          <i class="fas fa-star selectStar" data-value="1" id="s11"></i>
-          <i class="fas fa-star selectStar" data-value="2" id="s2"></i>
-          <i class="fas fa-star selectStar" data-value="3" id="s3"></i>
-          <i class="fas fa-star selectStar" data-value="4" id="s4"></i>
-          <i class="fas fa-star selectStar" data-value="5" id="s5"></i>
-          <i class="fas fa-star selectStar" data-value="6" id="s6"></i>
-          <i class="fas fa-star selectStar" data-value="7" id="s7"></i>
-          <i class="fas fa-star selectStar" data-value="8" id="s8"></i>
-          <i class="fas fa-star selectStar" data-value="9" id="s9"></i>
-          <i class="fas fa-star selectStar" data-value="10" id="s10"></i>
+          <div data-bookId="${id}" class="col col-lg-4 rateStar">
+          <i class="fas fa-star selectStar" data-value="1" "></i>
+          <i class="fas fa-star selectStar" data-value="2" ></i>
+          <i class="fas fa-star selectStar" data-value="3" ></i>
+          <i class="fas fa-star selectStar" data-value="4" ></i>
+          <i class="fas fa-star selectStar" data-value="5" ></i>
+          <i class="fas fa-star selectStar" data-value="6" ></i>
+          <i class="fas fa-star selectStar" data-value="7" ></i>
+          <i class="fas fa-star selectStar" data-value="8" ></i>
+          <i class="fas fa-star selectStar" data-value="9" ></i>
+          <i class="fas fa-star selectStar" data-value="10"  ></i>
           </div> 
       </div>      
       `
@@ -94,45 +94,131 @@ function onSuccess(json) {
     
     $( ".selectStar" ).on( "click", function() {
       let book = $(this).parent().attr("data-bookId");
-      let user = "5e7d934988925f5699be7376"
-      console.log( book , " is checked!" );
-      let rating = $(this).data("value");
+      var attr = $(this).attr('data-ratingid');
+      if(!attr)
+      {
+        // There is no rating: make one
+        let user = "5e7d934988925f5699be7376"
      
+        let rating = $(this).data("value");
+      
 
-       const ratingData = {
-         rating,
-         book,
-         user
-       }
+        const ratingData = {
+          rating,
+          book,
+          user
+        }
 
-    fetch('/api/v1/ratings', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ratingData),
-       })
-    .then((stream) => stream.json())
-    .then((res) => {
-      if (res.status === 200) {
-      } else {
-        console.log(res);
-      }
-     })
+        fetch('/api/v1/ratings', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(ratingData),
+          })
+        .then((stream) => stream.json())
+        .then((res) => {
+          if (res.status === 200) {
+          } else {
+            
+            let ratingId;
+            ratingId = res._id
+            $(this).attr("data-ratingId",ratingId)
+          }
+        })
       .catch((err) => console.log(err));
+      }else{
+        // The is a rating: delete it
+        if (typeof attr !== typeof undefined && attr !== false) {
+          $(this).css("color","pink");
+         let $this= $(this)
 
-    });
+          
+    
+        $.ajax({
+            method: 'DELETE',
+            url: '/api/v1/ratings/' + $(this).attr('data-ratingid'),
+            success: deleteSuccess,
+            error: deleteError
+        });
+    
+        function deleteSuccess(result) {
+            console.log("itworks");
+            $this.removeAttr("data-ratingid")
+            
+        }
+    
+        function deleteError(params) {
+            console.log(params)
+        }
+  
+      }
+      
+    
+      
+
+    }
+  });
+
+    
+    
+
+
+    
+
+
+
+    let checkRated = true
+    $(".selectStar").on("click",function(e) {
+      
+        let makeOrange= 0;
+        makeOrange = $(this).data("value")
+        
+        for (let i=0; i<makeOrange; i++){
+          $(this).parent().children().eq(i).addClass("clickedOrange")
+      
+        }
+        checkRated = false
+        
+    })
+
+
+      if(checkRated) {
+        $(".selectStar").on("mouseover",function(e) {
+      
+      
+        let makeOrange= 0;
+        makeOrange = $(this).data("value")
+        
+        for (let i=0; i<makeOrange; i++){
+        $(this).parent().children().eq(i).addClass("hoverOrange")
+      
+        }
+        
+        })
+        $(".selectStar").on("mouseout",function(e) {
+      
+      
+        let makeOrange= 0;
+        makeOrange = $(this).data("value")
+        
+        for (let i=0; i<makeOrange; i++){
+          $(this).parent().children().eq(i).removeClass("hoverOrange")
+      
+        }
+        
+      })
+    }
+    
+
+
 
 }
 
 function handleError(err) {
     console.log(err)
 }
-console.log($("#s1"))
-$("#s1").click(function () {
-  $("#s1").css("color","yellow")
 
-})
 
 const buttonContainer = document.getElementById('button-group')
 
@@ -154,3 +240,4 @@ const order = function() {
     elem.style.order = index
   })
 }
+
