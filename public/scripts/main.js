@@ -127,10 +127,17 @@ function onSuccess(json) {
           }
         })
       .catch((err) => console.log(err));
+
+
       }else{
+
+    
+
+
+
         // The is a rating: delete it
         if (typeof attr !== typeof undefined && attr !== false) {
-          $(this).css("color","pink");
+        //   $(this).css("color","pink");
          let $this= $(this)
 
           
@@ -144,7 +151,14 @@ function onSuccess(json) {
     
         function deleteSuccess(result) {
             console.log("itworks");
-            $this.removeAttr("data-ratingid")
+        $this.removeAttr("data-ratingid")
+        let makeOrange= 0;
+        makeOrange = $this.data("value")
+        
+        for (let i=0; i<makeOrange; i++){
+          $this.parent().children().eq(i).removeClass("clickedOrange")
+      
+        }
             
         }
     
@@ -153,10 +167,6 @@ function onSuccess(json) {
         }
   
       }
-      
-    
-      
-
     }
   });
 
@@ -168,7 +178,7 @@ function onSuccess(json) {
 
 
 
-    let checkRated = true
+ 
     $(".selectStar").on("click",function(e) {
       
         let makeOrange= 0;
@@ -178,15 +188,15 @@ function onSuccess(json) {
           $(this).parent().children().eq(i).addClass("clickedOrange")
       
         }
-        checkRated = false
+       
         
     })
 
-
-      if(checkRated) {
+ 
+      
         $(".selectStar").on("mouseover",function(e) {
       
-      
+        
         let makeOrange= 0;
         makeOrange = $(this).data("value")
         
@@ -207,8 +217,8 @@ function onSuccess(json) {
       
         }
         
-      })
-    }
+        })
+    
     
 
 
