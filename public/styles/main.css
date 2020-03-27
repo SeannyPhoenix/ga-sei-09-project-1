@@ -13,10 +13,19 @@ body {
 
 .fa-star{
     color: rgb(226, 123, 6);
-    padding-left: 30px;
+    padding-left: 0px;
 }
 
 #lister {
     display: flex;
     flex-direction: column;
+}
+
+.selectStar{
+    color: gray;
+}
+
+#button-group{
+    text-align: right;
+
 }
