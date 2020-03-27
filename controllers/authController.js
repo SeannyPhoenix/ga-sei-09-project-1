@@ -72,7 +72,16 @@ async function register(req, res) {
 
 async function login(req, res) {
   try {
-    // Find User By Email
+    // If a user is logged in, we cannot log in again
+    if (req.session.currentUser) {
+      res.status(400).json({
+        status: 400,
+        message: `Already logged in`
+      });
+      return;
+    }
+
+    // Look up user by email
     let user = await db.User.findOne({
       email: req.body.email
     });
@@ -80,10 +89,10 @@ async function login(req, res) {
       throw new Error(`Invalid credentials`);
     }
 
-    // Hash Password From User Request and Compare Against Found User Password
+    // Check if password is correct
     let isMatch = await bcrypt.compare(req.body.password, user.password);
     if (isMatch) {
-      // Create a New Session (Key to the Kingdom)
+      // Create session
       req.session.currentUser = {
         _id: user._id,
         firstName: user.firstName,
@@ -110,16 +119,41 @@ async function login(req, res) {
 }
 
 async function logout(req, res) {
-  res.json({
-    status: 200,
-    message: 'logout'
-  });
+  try {
+    if (!req.session.currentUser) {
+      // Not Authorized
+      return res.status(401).json({
+        status: 401,
+        error: 'Unauthorized, please login and try again'
+      });
+    }
+    // Destroy Session and Respond with Success
+    req.session.destroy()
+    res.status(200).json({
+      status: 200,
+      message: 'Success logging out'
+    });
+  }
+  catch (err) {
+    if (err) return res.status(400).json({
+      status: 400,
+      message: 'Something went wrong, please try again'
+    });
+  }
 }
 
 async function verify(req, res) {
-  res.json({
+  if (!req.session.currentUser) {
+    // Not Authorized
+    return res.status(401).json({
+      status: 401,
+      error: 'Unauthorized, please login and try again'
+    });
+  }
+  return res.json({
     status: 200,
-    message: 'verify'
+    message: 'Authorized',
+    currentUser: req.session.currentUser,
   });
 }
 
