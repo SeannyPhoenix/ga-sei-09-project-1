@@ -71,10 +71,42 @@ async function register(req, res) {
 }
 
 async function login(req, res) {
-  res.json({
-    status: 200,
-    message: 'login'
-  });
+  try {
+    // Find User By Email
+    let user = await db.User.findOne({
+      email: req.body.email
+    });
+    if (!user) {
+      throw new Error(`Invalid credentials`);
+    }
+
+    // Hash Password From User Request and Compare Against Found User Password
+    let isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (isMatch) {
+      // Create a New Session (Key to the Kingdom)
+      req.session.currentUser = {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      };
+      res.status(200).json({
+        status: 200,
+        user: req.session.currentUser
+      });
+    }
+    else {
+      // Passwords Do Not Match, Respond with User Error
+      throw new Error(`Invalid credentials`);
+    }
+  }
+  catch (err) {
+    console.log(`Login Error:`, err);
+    return res.status(400).json({
+      status: 400,
+      message: 'Invalid credentials'
+    });
+  }
 }
 
 async function logout(req, res) {
