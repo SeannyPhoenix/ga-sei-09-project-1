@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
-const User = require('./User.js');
-const Book = require('./Book.js');
-const Rating = require('./Rating.js');
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/ibdb",
-{
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/ibdb", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
 });
 
 module.exports = {
-  User,
-  Book,
-  Rating
+  User: require('./User.js'),
+  Book: require('./Book.js'),
+  Rating: require('./Rating.js'),
+  User: require('./User.js'),
 }

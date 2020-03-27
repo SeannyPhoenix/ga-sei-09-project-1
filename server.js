@@ -1,42 +1,59 @@
-// ------------------------------------- SERVER CONFIG -------------------------------------- //
+// --------------------------- SERVER CONFIG ---------------------------- //
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-// ---------------------------------------- DATABASE ---------------------------------------- //
-
+// ------------------------------ DATABASE ------------------------------ //
 const db = require('./models');
 
-// ----------------------------------------- ROUTES ----------------------------------------- //
-
+// ------------------------------- ROUTES ------------------------------- //
 const routes = require('./routes');
 
-// --------------------------------------- MIDDLEWARE --------------------------------------- //
-
+// ----------------------------- MIDDLEWARE ----------------------------- //
 // Serve Public Directory
 app.use(express.static(`${__dirname}/public`));
 
 // BodyParser - Make Request Data Avaialble on req.body
+// We accept both Form Data and JSON
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(bodyParser.json())
 
+// Express Session
+const SECRET = 'secret';
+app.use(session({
+  store: new MongoStore({
+    url: process.env.MONGODB_URI || 'mongodb://localhost:27017/idbd'
+  }),
+  secret: SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 * 2 // Two weeks
+  }
+}));
 
-//Home View
 
-app.get('/', (req, res) =>
-{
-  res.sendFile("/views/index.html",
-  {
+// ----------------------------- ENDPOINTS ------------------------------ //
+
+// VIEWS
+app.get('/', (req, res) => {
+  res.sendFile("/views/index.html", {
     root: __dirname,
   });
 });
 
-app.use('/api/v1/', routes.api);
+// API, AUTH
+const API_VERSION = 'v1';
+app.use(`/api/${API_VERSION}/`, routes.api);
 
 
-// -------------------------------------- START SERVER -------------------------------------- //
+// ---------------------------- START SERVER ---------------------------- //
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
