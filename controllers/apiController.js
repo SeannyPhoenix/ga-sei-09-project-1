@@ -109,20 +109,31 @@ async function showRating(req, res) {
 
 async function createRating(req, res) {
   try {
+    let user = await db.User.findById(req.body.user);
+    let book = await db.Book.findById(req.body.book);
+
+    // Check if this user had already rated this book
+    user.ratings.forEach((rating) => {
+      if (rating.book === book._id) {
+        res.status(400).json({
+          status: 400,
+          error: 'User had already rated book.'
+        });
+        return;
+      }
+    });
+
     let newRating = await db.Rating.create(req.body);
 
-    let user = await db.User.findById(newRating.user);
     user.ratings.push(newRating._id);
     await user.save();
-
-    let book = await db.Book.findById(newRating.book);
     book.ratings.push(newRating._id);
     await book.save();
 
     res.json(newRating);
   }
   catch (err) {
-    console.log(`Create Rationg Error:`, err);
+    console.log(`Create Rating Error:`, err);
     res.sendStatus(500);
   }
 }
