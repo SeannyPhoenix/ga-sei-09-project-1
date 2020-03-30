@@ -47,6 +47,9 @@ function onSuccess(json) {
                 .then((res) => {
                     // Get instantly user rating
                     $this.parent().append(`<span class="userRating">${res.rating}</span>`);
+                    $this.parent().parent().eq(2).hide()
+                    
+                    // `<i class="fas fa-star">${avg} <span class="ratingLength">(${element.ratings.length} rating)</span> </i>`
 
 
                     let ratingId;
@@ -77,14 +80,17 @@ function onSuccess(json) {
 
                 function deleteSuccess(result) {
                     console.log("itworks");
-                    $this.removeAttr("data-ratingid")
+                    $this.removeAttr("data-ratingid");
                     let makeOrange = 0;
-                    makeOrange = $this.data("value")
+                    makeOrange = $this.data("value");
 
                     for (let i = 0; i < makeOrange; i++) {
-                        $this.parent().children().eq(i).removeClass("clickedOrange")
+                        $this.parent().children().eq(i).removeClass("clickedOrange");
+                        
 
                     }
+                    //Delete user rate from front-end 
+                    $this.parent().children().eq(10).empty();
 
                 }
 
@@ -120,6 +126,36 @@ function onSuccess(json) {
                 if (element.ratings[i].user === user) {
 
                     var userRating = element.ratings[i].rating;
+                    // let starId = `${id}`
+
+                //    console.log($("#" +starId));
+                //    $("#" +starId).css("background-color","pink");
+                     let userStar = document.getElementById(""+title);
+                    //  console.log(userStar);
+                     
+                    //  userStar.className.add("clickedOrange")
+
+                   
+
+                    // $(`#${id}`).css("color","pink")
+
+                  
+                    //  if (id === element.ratings[i].book){
+
+                    //     for (let k = 0; k < userRating; k++) {
+                    //         // let userStar = document.getElementById(""+id);
+                    //         
+                    //         // userStar.className.add("clickedOrange")
+
+                    //  }
+                    
+
+                    
+
+                    // }
+
+                    
+                    
 
 
                 }
@@ -138,7 +174,7 @@ function onSuccess(json) {
         <div class="col col-lg-2 ">
           <i class="fas fa-star">${avg} <span class="ratingLength">(${element.ratings.length} rating)</span> </i>
         </div>
-        <div data-bookId="${id}" class="col col-lg-4 rateStar">
+        <div data-bookId="${id}" id="${id}" class="col col-lg-4 rateStar">
         <i class="fas fa-star selectStar" data-value="1" ></i>
         <i class="fas fa-star selectStar" data-value="2" ></i>
         <i class="fas fa-star selectStar" data-value="3" ></i>
@@ -157,12 +193,12 @@ function onSuccess(json) {
         } else {
             bookLine = ` 
       <div class="row justify-content-md-center book" data-rates="0">
-          <div class="col col-lg-7" >
+          <div class="col col-lg-6" >
             ${title} (${author})
           </div>
       
-          <div class="col col-lg-1 ">
-            <i class="fas fa-star"></i>
+          <div class="col col-lg-2 ">
+            <i class="fas fa-star notRatedStar"></i>
           </div>
           <div data-bookId="${id}" class="col col-lg-4 rateStar">
           <i class="fas fa-star selectStar" data-value="1" "></i>
@@ -183,6 +219,13 @@ function onSuccess(json) {
         let d1 = document.getElementById('lister');
 
         d1.insertAdjacentHTML('beforeend', bookLine);
+       
+       for(let k=0;k<userRating;k++) {
+        $("#"+id).children().eq(k).addClass("clickedOrange")
+
+       }  
+        
+       
 
     }
 
@@ -250,3 +293,4 @@ const order = function () {
         elem.style.order = index
     })
 }
+

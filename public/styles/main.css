@@ -73,8 +73,12 @@ nav {
     font-size: 1rem;
     font-weight: 900;
     margin-left: 4px;
-
 }
 
+.notRatedStar{
+    padding-left: 0;
+    margin-left: 0;
+
+}
 
 
