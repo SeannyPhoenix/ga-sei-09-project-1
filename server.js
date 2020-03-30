@@ -49,6 +49,12 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/auth', (req, res) => {
+  res.sendFile("/views/auth.html", {
+    root: __dirname,
+  });
+});
+
 // API, AUTH
 const API_VERSION = 'v1';
 app.use(`/api/${API_VERSION}/`, routes.api);

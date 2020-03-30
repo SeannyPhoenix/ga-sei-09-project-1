@@ -1,22 +1,21 @@
 body {
-    background-color: #659DBD;
+  background-color: #659DBD;
 }
 
-
-#chartList{
-    background-color:  #F8F8F8;
+#chartList {
+  background-color: #F8F8F8;
 }
 
-#rank{
-    font-size: 23px;
+#rank {
+  font-size: 23px;
 }
 
-.fa-star{
-    color: rgb(226, 123, 6);
-    padding-left: 30px;
+.fa-star {
+  color: rgb(226, 123, 6);
+  padding-left: 30px;
 }
 
 #lister {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

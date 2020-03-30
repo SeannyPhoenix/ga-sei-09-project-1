@@ -9,7 +9,7 @@ module.exports = {
     {
       firstName: 'Seanny',
       lastName: 'Phoenix',
-      email: 'seannyphoenix@gmail.cpom',
+      email: 'seannyphoenix@gmail.com',
       password: '$2a$10$jOOApPRB8MlApVLHXqHoa./eScF3voh9LsuSNmU6QDFksogD2X6Oe',
       plaintext: 'Testing123'
     },
