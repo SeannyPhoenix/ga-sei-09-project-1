@@ -19,7 +19,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.passwordHelp {
-  visibility: collapse;
-}
