@@ -1,80 +1,73 @@
 body {
-    background-color: #4b000d;
+  background-color: #4b000d;
 }
 
 nav {
-    background-color: #f9a916;
-}
-.nav-text{
-    color: black;
-    font-weight: bold;
+  background-color: goldenrod;
 }
 
-.navbar-brand{
-    font-size: 27px;
-    font-weight: bold;
+.nav-text {
+  color: black;
+  font-weight: bold;
 }
 
-
-#chartList{
-    background-color:  #F8F8F8;
-    margin-top: 10px;
+.nav-text:hover {
+  color: black;
+  font-weight: bold;
 }
 
-#rank{
-    font-size: 23px;
-    font-weight: 600;
-    background-color: rgb(202, 201, 201);
-    border: solid 1px rgba(48, 47, 48, 0.363);
-    
+.navbar-brand {
+  font-size: 27px;
+  font-weight: bold;
 }
 
-.fa-star{
-    color: rgb(226, 123, 6);
-    padding-left: 0px;
+#chartList {
+  background-color: #F8F8F8;
+  margin-top: 10px;
+}
+
+#rank {
+  font-size: 23px;
+  font-weight: 600;
+  background-color: rgb(202, 201, 201);
+  border: solid 1px rgba(48, 47, 48, 0.363);
 }
 
 #lister {
-    
-    display: flex;
-    flex-direction: column;
-    
+  display: flex;
+  flex-direction: column;
 }
 
-.selectStar{
-    color: gray;
+.selectStar {
+  color: gray;
 }
 
-#button-group{
-    text-align: right;
+#button-group {
+  text-align: right;
 }
 
-.ratingLength{
-    color: gray;
+.ratingLength {
+  color: gray;
 }
 
 .book {
-    padding: 4px 0px 4px 0px;
-    border: solid 0.25px rgba(48, 47, 48, 0.363);
-    
+  padding: 4px 0px 4px 0px;
+  border: solid 0.25px rgba(48, 47, 48, 0.363);
 }
 
-
-.clickedOrange{
-    color:orange
-}
-.hoverOrange{
-    color:orange
+.star {
+  color: gray;
 }
 
-.userRating{
-    color: rgb(226, 123, 6);
-    font-family: "Font Awesome 5 Free";
-    font-size: 1rem;
-    font-weight: 900;
-    margin-left: 4px;
-
+.gold-star {
+  color: goldenrod;
+  text-shadow: 0 0 3px black;
 }
 
-
-
+.userRating {
+  color: goldenrod;
+  font-family: "Font Awesome 5 Free";
+  font-size: 1rem;
+  font-weight: 900;
+  margin-left: 4px;
+}
