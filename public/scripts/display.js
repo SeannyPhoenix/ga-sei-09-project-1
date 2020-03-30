@@ -8,6 +8,8 @@ elems = {
     search: document.querySelector('.navbar form')
   },
   bookList: document.querySelector('#book-list'),
+  sortAvg: document.querySelector('#sort-avg'),
+  sortUser: document.querySelector('#sort-user')
 }
 
 function updateMenu() {
@@ -31,6 +33,7 @@ function buildBookList() {
   state.bookList.forEach(book => {
     buildBookLine(book);
   });
+  orderCurrent();
 }
 
 function buildBookLine(book) {
@@ -43,7 +46,7 @@ function buildBookLine(book) {
       sum += book.ratings[i].rating;
 
       //Get user ratings for each book
-      if (book.ratings[i].user === state.user._id) {
+      if (state.user && book.ratings[i].user === state.user._id) {
         book.userRating = book.ratings[i].rating;
       }
       else {
@@ -55,12 +58,14 @@ function buildBookLine(book) {
   }
   else {
     book.averageRating = 0;
+    book.userRating = 0;
   }
 
   let bookLine = document.createElement('div');
   bookLine.classList = `row justify-content-md-center book`;
   bookLine.setAttribute('data-book-id', book._id);
-  bookLine.setAttribute('data-average-rating', book.averageRating);
+  bookLine.setAttribute('data-average', book.averageRating);
+  bookLine.setAttribute('data-user', book.userRating);
 
   let bookInfo = document.createElement('div');
   bookInfo.classList = `col col-lg-6`;

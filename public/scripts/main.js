@@ -1,12 +1,12 @@
-const orderFunctions = {
-  descendingByRating: (a, b) => b.dataset.rates - a.dataset.rates,
-  ascendingByRating: (a, b) => a.dataset.rates - b.dataset.rates,
+const sortFunctions = {
+  orderAvg: (a, b) => b.dataset.average - a.dataset.average,
+  orderUser: (a, b) => b.dataset.user - a.dataset.user,
 }
 
 const state = {
   user: null,
   bookList: null,
-  order: orderFunctions.descendingByRating,
+  currentSort: sortFunctions.orderAvg,
 }
 
 async function initialize() {
@@ -24,15 +24,30 @@ async function initialize() {
     buildBookList(state.bookList);
 
     // Order them by ranking
-    order();
+
+    elems.sortAvg.addEventListener('click', orderAvg);
+    elems.sortUser.addEventListener('click', orderUser);
   }
   catch (err) {
     console.log(err);
   }
 }
 
-const order = function() {
-  const ordered = [...document.getElementsByClassName('book')].sort(state.order);
+function orderAvg() {
+  state.currentSort = sortFunctions.orderAvg;
+  console.log(`Order by Average`);
+  orderCurrent();
+}
+
+function orderUser() {
+  state.currentSort = sortFunctions.orderUser;
+  console.log(`Order by User`);
+  orderCurrent();
+}
+
+function orderCurrent() {
+  const ordered = [...document.getElementsByClassName('book')]
+    .sort(state.currentSort);
   ordered.forEach((elem, index) => {
     elem.style.order = index
   });
@@ -95,18 +110,5 @@ function removeGold(userRating, starNumber) {
     userRating.childNodes[i].classList.remove("gold-star");
   }
 }
-
-
-
-// const buttonContainer = document.getElementById('button-group')
-
-
-
-
-
-// buttonContainer.addEventListener('click', (e) => {
-//     currentOrder = orderFunctions[e.target.dataset.order]
-//     order()
-// })
 
 initialize();

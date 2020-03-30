@@ -162,6 +162,7 @@ async function verifyUser() {
     else {
       state.user = null;
       console.log(`No user logged in.`);
+      orderAvg();
     }
     updateMenu();
     buildBookList();

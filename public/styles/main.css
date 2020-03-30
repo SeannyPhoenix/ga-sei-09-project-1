@@ -33,7 +33,7 @@ nav {
   border: solid 1px rgba(48, 47, 48, 0.363);
 }
 
-#lister {
+#book-list {
   display: flex;
   flex-direction: column;
 }
