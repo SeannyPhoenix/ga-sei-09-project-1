@@ -3,28 +3,23 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 
-const RatingSchema = new Schema(
-{
-  rating:
-  {
+const RatingSchema = new Schema({
+  rating: {
     type: Number,
     min: 1,
-    max: 10,
+    max: 5,
     required: true
   },
   review: String,
-  user:
-  {
+  user: {
     type: ObjectId,
     ref: 'User'
   },
-  book:
-  {
+  book: {
     type: ObjectId,
     ref: 'Book'
   },
-  timestamp:
-  {
+  timestamp: {
     type: Date,
     required: true,
     default: new Date()

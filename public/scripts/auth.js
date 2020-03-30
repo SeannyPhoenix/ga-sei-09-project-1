@@ -71,7 +71,7 @@ async function login() {
   catch (err) {
     console.log(`Error:`, err);
   }
-  verifyUser();
+  await verifyUser();
   return false;
 }
 
@@ -116,7 +116,7 @@ async function register() {
   catch (err) {
     console.log(`Error:`, err);
   }
-  verifyUser();
+  await verifyUser();
   return false;
 }
 
@@ -145,7 +145,7 @@ async function logout() {
   catch (err) {
     console.log(`Error:`, err);
   }
-  verifyUser();
+  await verifyUser();
   return false;
 }
 
@@ -156,13 +156,16 @@ async function verifyUser() {
     });
     let data = await result.json();
     if (data.status === 200) {
-      updateMenu(true);
       state.user = data.currentUser;
+      console.log(`${state.user.firstName} ${state.user.lastName} logged in.`);
     }
     else {
-      updateMenu(false);
       state.user = null;
+      console.log(`No user logged in.`);
+      orderAvg();
     }
+    updateMenu();
+    buildBookList();
   }
   catch (err) {
     console.log(`Error:`, err);
