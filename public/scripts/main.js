@@ -6,7 +6,7 @@ $.ajax({
     error: handleError
 });
 
-let user = "5e7eb3eb9beb627b50ac44ff"; // needs to get from authorized user
+let user = "5e8221d835ab1d20c4fa3d1b"; // needs to get from authorized user
 
 
 
@@ -23,13 +23,13 @@ function onSuccess(json) {
     $(".selectStar").on("click", function () {
         let book = $(this).parent().attr("data-bookId");
         var attr = $(this).attr('data-ratingid');
+        let rating = $(this).data("value");
+        let $this = $(this);
+
+
+
         if (!attr) {
             // There is no rating: make one
-
-            let $this = $(this);
-
-            let rating = $(this).data("value");
-
             const ratingData = {
                 rating,
                 book,
@@ -47,16 +47,11 @@ function onSuccess(json) {
                 .then((res) => {
                     // Get instantly user rating
                     $this.parent().append(`<span class="userRating">${res.rating}</span>`);
-                    $this.parent().parent().eq(2).hide()
-                    
-                    // `<i class="fas fa-star">${avg} <span class="ratingLength">(${element.ratings.length} rating)</span> </i>`
-
-
+                    $this.parent().parent().eq(2).hide();
                     let ratingId;
                     ratingId = res._id;
 
                     $(this).attr("data-ratingId", res._id);
-
 
                 })
                 .catch((err) => console.log(err));
@@ -68,8 +63,6 @@ function onSuccess(json) {
             if (typeof attr !== typeof undefined && attr !== false) {
 
                 let $this = $(this);
-
-
 
                 $.ajax({
                     method: 'DELETE',
@@ -113,8 +106,6 @@ function onSuccess(json) {
         let bookLine;
         // Check if there is any rating
         if (element.ratings.length) {
-            // console.log(element.ratings[1].user)
-
 
             let sum = 0;
 
@@ -126,44 +117,21 @@ function onSuccess(json) {
                 if (element.ratings[i].user === user) {
 
                     var userRating = element.ratings[i].rating;
-                    // let starId = `${id}`
 
-                //    console.log($("#" +starId));
-                //    $("#" +starId).css("background-color","pink");
-                     let userStar = document.getElementById(""+title);
-                    //  console.log(userStar);
-                     
-                    //  userStar.className.add("clickedOrange")
+                        
+                    var ratingId = element.ratings[i]._id;
 
-                   
-
-                    // $(`#${id}`).css("color","pink")
-
-                  
-                    //  if (id === element.ratings[i].book){
-
-                    //     for (let k = 0; k < userRating; k++) {
-                    //         // let userStar = document.getElementById(""+id);
-                    //         
-                    //         // userStar.className.add("clickedOrange")
-
-                    //  }
-                    
-
-                    
-
-                    // }
-
-                    
-                    
-
-
+                        
+                        
                 }
             }
 
             var avg = sum / element.ratings.length
             // Get two digits
-            avg = avg.toFixed(1)
+            avg = avg.toFixed(1);
+
+            
+          
 
             bookLine = `
       <div class="row justify-content-md-center book" data-rates="${avg}">
@@ -217,15 +185,32 @@ function onSuccess(json) {
         }
 
         let d1 = document.getElementById('lister');
+        
 
         d1.insertAdjacentHTML('beforeend', bookLine);
        
+        // get Users Stars
        for(let k=0;k<userRating;k++) {
-        $("#"+id).children().eq(k).addClass("clickedOrange")
+        $("#"+id).children().eq(k).addClass("clickedOrange");
+       };
+       $("#"+id).children().eq(userRating-1).attr("data-ratingid",ratingId);
 
-       }  
-        
+   
+
+
+       //Delete undefined user
+        $(".userRating").each(function () {
+
+            if($(this).text()==="undefined") {
+                $(this).hide()
+                  }
+            
+        })
+
        
+
+
+
 
     }
 
